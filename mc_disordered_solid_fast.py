@@ -5,6 +5,14 @@ from numba import jit  # For just-in-time compilation
 from CalculateScattering import CrystalStructure, Grid
 from numpy import real, imag, angle, amax
 
+def centered_FFT(intensity):
+    """Calculates a Fast Fourier Transform of electron density, assuming the origin is in the centre of the map"""
+    return real(fftshift(fftn(fftshift(intensity))))
+
+def centered_iFFT(intensity):
+    """Calculates a Fast Fourier Transform of electron density, assuming the origin is in the centre of the map"""
+    return real(fftshift(ifftn(fftshift(intensity))))
+
 #-------- Initialize Lattice -----
 def initialize_lattice(size=(50, 50)):
     """
